@@ -3,7 +3,7 @@ include CukeProfiles
 
 describe "Extracting scenarios" do
   before do
-    features_dir = File.join(File.dirname(__FILE__), '..', 'examples')
+    features_dir = File.join(File.dirname(__FILE__), '..', 'example', 'features')
 
     @parsed_features = CukeParser.parse_features(features_dir)
   end
