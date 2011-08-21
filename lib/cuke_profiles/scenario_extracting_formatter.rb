@@ -28,7 +28,7 @@ module CukeProfiles
 
         @discovered_scenarios << {
             line: row.line,
-            tags: @feature_tags + @outline_tags
+            tags: @feature_tags + @outline_tags + examples.tags.map { |t| t.name }
         }
       end
     end

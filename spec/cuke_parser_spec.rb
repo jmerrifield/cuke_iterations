@@ -16,6 +16,7 @@ describe "Extracting scenarios" do
       {filename: 'i_love_cukes.feature', line: 4},
       {filename: 'i_love_cukes.feature', line: 15},
       {filename: 'i_love_cukes.feature', line: 16},
+      {filename: 'i_love_cukes.feature', line: 25},
     ]
 
     parsed_files_with_lines = @parsed_features.map{|x| {filename: x[:filename], line: x[:line]}}
@@ -44,5 +45,11 @@ describe "Extracting scenarios" do
     @parsed_features.should include filename: 'cuking_rocks.feature',
       line: 21,
       tags: ['@feature_tag1', '@feature_tag2']
+  end
+
+  it "should read example-group tags on example rows" do
+    @parsed_features.should include filename: 'i_love_cukes.feature',
+      line: 25,
+      tags: ['@tag5', '@tag6', '@tag7', '@tag8']
   end
 end

@@ -14,3 +14,12 @@ Feature: I love cukes
     | cukes |
     | 10    |
     | 11    |
+
+  @tag5 @tag6
+  Scenario Outline: My scenario outline
+    Given I have "<cukes>" cukes
+
+    @tag7 @tag8
+  Examples:
+    | cukes |
+    | 10    |
