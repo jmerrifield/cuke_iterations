@@ -4,10 +4,18 @@ module CukeProfiles
 
     def initialize
       @discovered_scenarios = []
+      @feature_tags = []
+    end
+
+    def feature(feature)
+      @feature_tags = feature.tags.map { |t| t.name }
     end
 
     def scenario(scenario)
-      @discovered_scenarios << {line: scenario.line, tags: scenario.tags.map{|t| t.name}}
+      @discovered_scenarios << {
+          line: scenario.line,
+          tags: @feature_tags + scenario.tags.map { |t| t.name }
+      }
     end
 
     def examples(examples)

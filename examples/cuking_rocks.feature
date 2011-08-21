@@ -1,3 +1,4 @@
+@feature_tag1 @feature_tag2
 Feature: My test feature
   In order to be awesome
   As a cuker
