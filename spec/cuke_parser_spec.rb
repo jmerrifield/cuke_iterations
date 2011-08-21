@@ -31,4 +31,10 @@ describe "Extracting scenarios" do
       line: 10,
       tags: ['@feature_tag1', '@feature_tag2']
   end
+
+  it "should read feature-level tags on example rows" do
+    @parsed_features.should include filename: 'cuking_rocks.feature',
+      line: 21,
+      tags: ['@feature_tag1', '@feature_tag2']
+  end
 end
