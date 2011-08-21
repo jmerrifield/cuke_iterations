@@ -18,13 +18,17 @@ module CukeProfiles
       }
     end
 
+    def scenario_outline(outline)
+      @outline_tags = outline.tags.map { |t| t.name }
+    end
+
     def examples(examples)
       examples.rows.each do |row|
         next if row == examples.rows.first
 
         @discovered_scenarios << {
             line: row.line,
-            tags: @feature_tags
+            tags: @feature_tags + @outline_tags
         }
       end
     end

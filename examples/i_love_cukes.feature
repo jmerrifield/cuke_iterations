@@ -5,3 +5,12 @@ Feature: I love cukes
     Given this
     When I do that
     Then all is well
+
+  @tag3 @tag4
+  Scenario Outline: My scenario outline
+    Given I have "<cukes>" cukes
+
+  Examples:
+    | cukes |
+    | 10    |
+    | 11    |
