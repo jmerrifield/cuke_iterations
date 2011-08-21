@@ -7,7 +7,7 @@ module CukeProfiles
     end
 
     def scenario(scenario)
-      @discovered_scenarios << {line: scenario.line}
+      @discovered_scenarios << {line: scenario.line, tags: scenario.tags.map{|t| t.name}}
     end
 
     def examples(examples)
