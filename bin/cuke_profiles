@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.dirname(__FILE__) + "/../lib"
+require 'cuke_profiles'
+require 'trollop'
+
+opts = Trollop::options do
+  opt :profiles, "Profiles file to use", :default => 'cuke_profiles.yaml'
+  opt :out, "Name of runfile to write", :default => 'run.txt'
+end
+
+raise "Profiles file '#{opts[:profiles]}' doesn't exist" unless File.exist? opts[:profiles]
+profiles = YAML.load(File.read(opts[:profiles]))
+
+all_scenarios = []
+features = CukeProfiles::CukeParser.parse_features(Dir.getwd)
+profiles.each do |p|
+  CukeProfiles::ScenarioListGenerator.for_profile(features, p).each do |scenario|
+    all_scenarios << File.join('features', 'profiles', p[:name], '..', '..', scenario[:filename] + ":#{scenario[:line]}")
+  end
+end
+
+File.open(opts[:out], 'w') {|f| f.puts all_scenarios}
