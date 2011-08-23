@@ -1,10 +1,9 @@
----
-- :name: iphone
+iphone:
   :include_tags:
   - ! '@tag2'
   - ! '@tag8'
   :exclude_tags: []
-- :name: android
+android:
   :include_tags:
   - ! '@tag3'
   :exclude_tags:

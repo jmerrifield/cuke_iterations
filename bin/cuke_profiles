@@ -14,9 +14,9 @@ profiles = YAML.load(File.read(opts[:profiles]))
 
 all_scenarios = []
 features = CukeProfiles::CukeParser.parse_features(Dir.getwd)
-profiles.each do |p|
-  CukeProfiles::ScenarioListGenerator.for_profile(features, p).each do |scenario|
-    all_scenarios << File.join('profiles', p[:name], '..', '..', scenario[:filename] + ":#{scenario[:line]}")
+profiles.each do |profile_name, profile|
+  CukeProfiles::ScenarioListGenerator.for_profile(features, profile).each do |scenario|
+    all_scenarios << File.join('profiles', profile_name, '..', '..', scenario[:filename] + ":#{scenario[:line]}")
   end
 end
 
