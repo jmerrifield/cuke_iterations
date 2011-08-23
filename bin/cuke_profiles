@@ -10,7 +10,7 @@ opts = Trollop::options do
   opt :out, "Name of runfile to write", :default => 'run.txt'
 end
 
-raise "Profiles file '#{opts[:profiles]}' doesn't exist" unless File.exist? opts[:profiles]
+Trollop::die "Couldn't find profiles file '#{opts[:profiles]}'" unless File.exist?(opts[:profiles])
 profiles = YAML.load(File.read(opts[:profiles]))
 
 all_scenarios = []
