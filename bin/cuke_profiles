@@ -5,7 +5,7 @@ require 'cuke_profiles'
 require 'trollop'
 
 opts = Trollop::options do
-  opt :profiles, "Profiles file to use", :default => 'cuke_profiles.yaml'
+  opt :profiles, "Profiles file to use", :default => 'cuke_profiles.yml'
   opt :out, "Name of runfile to write", :default => 'run.txt'
 end
 
