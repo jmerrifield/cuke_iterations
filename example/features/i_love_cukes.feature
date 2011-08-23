@@ -1,13 +1,13 @@
 Feature: I love cukes
 
   @tag1 @tag2
-  Scenario: Something
-    Given this
-    When I do that
-    Then all is well
+  Scenario: Scenario with tags
+    Given I have "10" cukes
+    When I check my cukes
+    Then I should have "10" cukes
 
   @tag3 @tag4
-  Scenario Outline: My scenario outline
+  Scenario Outline: Scenario outline with tags
     Given I have "<cukes>" cukes
 
   Examples:
@@ -16,7 +16,7 @@ Feature: I love cukes
     | 11    |
 
   @tag5 @tag6
-  Scenario Outline: My scenario outline
+  Scenario Outline: Scenario outline with tags and tagged example sections
     Given I have "<cukes>" cukes
 
     @tag7 @tag8

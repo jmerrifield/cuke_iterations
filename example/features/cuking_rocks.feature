@@ -1,8 +1,8 @@
 @feature_tag1 @feature_tag2
-Feature: My test feature
+Feature: My test feature with tags
   In order to be awesome
   As a cuker
-  My cukes should get blasted across hundreds of test machines
+  I need to know how many cukes I have, and what colour they are
 
   Background:
     Given I have "10" cukes
