@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = CukeProfiles::VERSION
   s.authors     = ["Jon Merrifield"]
   s.email       = ["jon@jmerrifield.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "https://github.com/jmerrifield/cuke_profiles"
+  s.summary     = %q{Multiple profiles for Cucumber features}
+  s.description = %q{Run your Cucumber features multiple times within one Cucumber invocation}
 
   s.rubyforge_project = "cuke_profiles"
 
