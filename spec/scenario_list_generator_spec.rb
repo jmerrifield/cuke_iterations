@@ -16,11 +16,6 @@ describe "Scenario list generator" do
         exclude_tags: []
     }
 
-    profile2 = {
-        name: "blah"
-    }
-
-    puts [profile, profile2].to_yaml
     list = ScenarioListGenerator.for_profile(@parsed_features, profile)
 
     list.should =~ [@test2, @test3]
