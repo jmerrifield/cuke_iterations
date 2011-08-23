@@ -1,4 +1,7 @@
-require "cuke_profiles/version"
-require 'cuke_profiles/cuke_parser'
-require 'cuke_profiles/scenario_extracting_formatter'
-require 'cuke_profiles/scenario_list_generator'
+$:.push File.expand_path("../cuke_profiles", __FILE__)
+
+require 'version'
+require 'cuke_parser'
+require 'scenario_extracting_formatter'
+require 'scenario_list_generator'
+require 'cucumber_helper'
