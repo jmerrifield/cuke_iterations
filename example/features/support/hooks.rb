@@ -1,3 +1,4 @@
 Before do |scenario|
-  puts current_profile(scenario)
+  profile = current_profile(scenario)
+  puts "This step is running under the '#{profile}' profile!"
 end
