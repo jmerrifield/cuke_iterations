@@ -16,7 +16,7 @@ all_scenarios = []
 features = CukeProfiles::CukeParser.parse_features(Dir.getwd)
 profiles.each do |p|
   CukeProfiles::ScenarioListGenerator.for_profile(features, p).each do |scenario|
-    all_scenarios << File.join('features', 'profiles', p[:name], '..', '..', scenario[:filename] + ":#{scenario[:line]}")
+    all_scenarios << File.join('profiles', p[:name], '..', '..', scenario[:filename] + ":#{scenario[:line]}")
   end
 end
 
