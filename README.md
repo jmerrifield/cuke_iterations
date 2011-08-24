@@ -5,6 +5,7 @@ Multiple invocations of your scenarios, without running Cucumber multiple times.
 ## Why would I want that?
 
 In order to run different variations of your tests e.g.
+
 * Different browsers/devices (run all my tests in Chrome, Firefox, iPhone simulator etc)
 * Different platforms (run all my tests against a Windows installation, Linux, OS X etc)
 * Some types of multi-tenant scenarios (run all my tests against the Initrode deployment, the Acme deployment etc)
