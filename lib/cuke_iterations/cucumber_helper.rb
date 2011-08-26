@@ -1,6 +1,6 @@
 module CukeIterations
   module CucumberHelper
-    def current_profile(scenario)
+    def current_iteration(scenario)
       if scenario.is_a? Cucumber::Ast::Scenario
         scenario.feature.file
       elsif scenario.is_a? Cucumber::Ast::OutlineTable::ExampleRow

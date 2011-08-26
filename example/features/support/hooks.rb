@@ -1,4 +1,4 @@
 Before do |scenario|
-  profile = current_profile(scenario)
-  puts "This step is running under the '#{profile}' profile!"
+  iteration = current_iteration(scenario)
+  puts "This step is running in the '#{iteration}' iteration!"
 end
