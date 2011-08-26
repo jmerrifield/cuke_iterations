@@ -9,26 +9,26 @@ describe "Scenario list generator" do
     ]
   end
 
-  it "should include the scenarios that have tags specified in the profile" do
-    profile = {
+  it "should include the scenarios that have tags specified in the iteration" do
+    iteration = {
         name: "iphone",
         include_tags: ['@tag2', '@tag8'],
         exclude_tags: []
     }
 
-    list = ScenarioListGenerator.for_iteration(@parsed_features, profile)
+    list = ScenarioListGenerator.for_iteration(@parsed_features, iteration)
 
     list.should =~ [@test2, @test3]
   end
 
-  it "should exclude scenarios that the profile specifies to exclude" do
-    profile = {
+  it "should exclude scenarios that the iteration specifies to exclude" do
+    iteration = {
         name: "android",
         include_tags: ['@tag3'],
         exclude_tags: ['@tag8'],
     }
 
-    list = ScenarioListGenerator.for_iteration(@parsed_features, profile)
+    list = ScenarioListGenerator.for_iteration(@parsed_features, iteration)
 
     list.should =~ [@test1]
   end
