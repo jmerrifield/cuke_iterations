@@ -35,7 +35,8 @@ First, install the gem: `gem install cuke_profiles`
 
 In your `features` folder, create a YAML file to contain your profiles.  Each one must have a set of included and excluded tags, e.g:
 
-```iphone:
+```yaml
+iphone:
   :include_tags:
   - ! '@mobile'
   - ! '@iphone_only'
@@ -44,7 +45,8 @@ android:
   :include_tags:
   - ! '@mobile'
   :exclude_tags:
-  - ! '@iphone_only'```
+  - ! '@iphone_only'
+```
 
 At present, you *must* specify all tags that are to be included.  Excluded tags have priority over included ones (e.g. an `@iphone_only` scenario would not be included in the `android` profile, even if it had the `@mobile` tag.
 
@@ -74,15 +76,19 @@ Note we haven't told Cucumber about our `features` folder like we normally would
 
 In `env.rb`:
 
-```require 'cuke_profiles'
-World(CukeProfiles::CucumberHelper)```
+```ruby
+require 'cuke_profiles'
+World(CukeProfiles::CucumberHelper)
+```
 
 Create a 'Before' hook:
 
-```Before do |scenario|
+```ruby
+Before do |scenario|
   profile = current_profile(scenario)
   puts "I'm running under the '#{profile}' profile!"
-end```
+end
+```
 
 ### What should I do now I know which profile the scenario is running under?
 
