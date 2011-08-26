@@ -1,4 +1,4 @@
-module CukeProfiles
+module CukeIterations
   class ScenarioExtractingFormatter
     attr_reader :discovered_scenarios
 

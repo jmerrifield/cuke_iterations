@@ -2,4 +2,4 @@
 .bundle
 pkg/*
 .idea
-features/run.txt
+features/run.txt.DS_Store

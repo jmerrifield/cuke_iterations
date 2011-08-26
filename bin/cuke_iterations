@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 
 $:.unshift File.dirname(__FILE__) + "/../lib"
-require 'cuke_profiles'
+require 'cuke_iterations'
 require 'trollop'
 require 'fileutils'
 
 opts = Trollop::options do
-  opt :profiles, "Profiles file to use", :default => 'cuke_profiles.yml'
+  opt :profiles, "Profiles file to use", :default => 'cuke_iterations.yml'
   opt :out, "Name of runfile to write", :default => 'run.txt'
 end
 
@@ -14,12 +14,12 @@ Trollop::die "Couldn't find profiles file '#{opts[:profiles]}'" unless File.exis
 profiles = YAML.load(File.read(opts[:profiles]))
 
 all_scenarios = []
-features = CukeProfiles::CukeParser.parse_features(Dir.getwd)
+features = CukeIterations::CukeParser.parse_features(Dir.getwd)
 profiles.each do |profile_name, profile|
   profile_dir = File.join('profiles', profile_name, '..', '..')
   FileUtils.mkdir_p profile_dir
 
-  CukeProfiles::ScenarioListGenerator.for_profile(features, profile).each do |scenario|
+  CukeIterations::ScenarioListGenerator.for_profile(features, profile).each do |scenario|
     all_scenarios << File.join(profile_dir, scenario[:filename] + ":#{scenario[:line]}")
   end
 end

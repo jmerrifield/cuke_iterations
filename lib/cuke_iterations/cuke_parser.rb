@@ -1,6 +1,6 @@
 require 'gherkin'
 
-module CukeProfiles
+module CukeIterations
   class CukeParser
     class << self
       def parse_features(dir)

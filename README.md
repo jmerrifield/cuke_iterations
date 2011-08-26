@@ -1,4 +1,4 @@
-# Cuke Profiles [![Build Status](https://secure.travis-ci.org/jmerrifield/cuke_profiles.png)](http://travis-ci.org/jmerrifield/cuke_profiles)
+# Cuke Profiles [![Build Status](https://secure.travis-ci.org/jmerrifield/cuke_iterations.png)](http://travis-ci.org/jmerrifield/cuke_iterations)
 
 Multiple invocations of your scenarios, without running Cucumber multiple times.
 
@@ -29,7 +29,7 @@ It's very simple.  Cucumber can accept a file specifying a list of exact scenari
 
 ## How do I use it?
 
-First, install the gem: `gem install cuke_profiles`
+First, install the gem: `gem install cuke_iterations`
 
 ### Configuration - profiles.yml
 
@@ -55,10 +55,10 @@ At present, you *must* specify all tags that are to be included.  Excluded tags 
 `cd features`
 
 With defaults:
-`cuke_profiles`
+`cuke_iterations`
 
 To see other options:
-`cuke_profiles -h`
+`cuke_iterations -h`
 
 ### What did it do?
 
@@ -77,8 +77,8 @@ Note we haven't told Cucumber about our `features` folder like we normally would
 In `env.rb`:
 
 ```ruby
-require 'cuke_profiles'
-World(CukeProfiles::CucumberHelper)
+require 'cuke_iterations'
+World(CukeIterations::CucumberHelper)
 ```
 
 Create a 'Before' hook:

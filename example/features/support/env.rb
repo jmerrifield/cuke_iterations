@@ -1,3 +1,3 @@
-require File.dirname(__FILE__) + '/../../../lib/cuke_profiles'
+require File.dirname(__FILE__) + '/../../../lib/cuke_iterations'
 
-World(CukeProfiles::CucumberHelper)
+World(CukeIterations::CucumberHelper)

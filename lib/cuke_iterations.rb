@@ -1,4 +1,4 @@
-$:.push File.expand_path("../cuke_profiles", __FILE__)
+$:.push File.expand_path("../cuke_iterations", __FILE__)
 
 require 'version'
 require 'cuke_parser'

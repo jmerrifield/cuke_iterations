@@ -1,5 +1,5 @@
 require 'spec_helper'
-include CukeProfiles
+include CukeIterations
 
 describe "Extracting scenarios" do
   before do

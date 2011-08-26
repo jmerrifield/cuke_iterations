@@ -1,4 +1,4 @@
-module CukeProfiles
+module CukeIterations
   class ScenarioListGenerator
     class << self
       def for_profile(parsed_features, profile)

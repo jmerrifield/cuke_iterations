@@ -1,3 +1,3 @@
-module CukeProfiles
+module CukeIterations
   VERSION = "0.0.2"
 end

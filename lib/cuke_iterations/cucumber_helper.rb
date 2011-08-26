@@ -1,4 +1,4 @@
-module CukeProfiles
+module CukeIterations
   module CucumberHelper
     def current_profile(scenario)
       if scenario.is_a? Cucumber::Ast::Scenario
