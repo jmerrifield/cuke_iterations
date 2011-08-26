@@ -6,12 +6,12 @@ require 'trollop'
 require 'fileutils'
 
 opts = Trollop::options do
-  opt :profiles, "Profiles file to use", :default => 'cuke_iterations.yml'
+  opt :iteration_file, "Iterations file to use", :default => 'cuke_iterations.yml'
   opt :out, "Name of runfile to write", :default => 'run.txt'
 end
 
-Trollop::die "Couldn't find profiles file '#{opts[:profiles]}'" unless File.exist?(opts[:profiles])
-profiles = YAML.load(File.read(opts[:profiles]))
+Trollop::die "Couldn't find iterations file '#{opts[:iteration_file]}'" unless File.exist?(opts[:iteration_file])
+profiles = YAML.load(File.read(opts[:iteration_file]))
 
 all_scenarios = []
 features = CukeIterations::CukeParser.parse_features(Dir.getwd)
