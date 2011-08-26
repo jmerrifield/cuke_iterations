@@ -5,6 +5,6 @@ iphone:
   :exclude_tags: []
 android:
   :include_tags:
-  - ! '@tag3'
+  - ! '@tag2'
   :exclude_tags:
   - ! '@tag8'
