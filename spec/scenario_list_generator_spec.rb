@@ -16,7 +16,7 @@ describe "Scenario list generator" do
         exclude_tags: []
     }
 
-    list = ScenarioListGenerator.for_profile(@parsed_features, profile)
+    list = ScenarioListGenerator.for_iteration(@parsed_features, profile)
 
     list.should =~ [@test2, @test3]
   end
@@ -28,7 +28,7 @@ describe "Scenario list generator" do
         exclude_tags: ['@tag8'],
     }
 
-    list = ScenarioListGenerator.for_profile(@parsed_features, profile)
+    list = ScenarioListGenerator.for_iteration(@parsed_features, profile)
 
     list.should =~ [@test1]
   end

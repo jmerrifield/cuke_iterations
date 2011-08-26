@@ -19,7 +19,7 @@ iterations.each do |iteration_name, iteration|
   iteration_dir = File.join('iterations', iteration_name, '..', '..')
   FileUtils.mkdir_p iteration_dir
 
-  CukeIterations::ScenarioListGenerator.for_profile(features, iteration).each do |scenario|
+  CukeIterations::ScenarioListGenerator.for_iteration(features, iteration).each do |scenario|
     all_scenarios << File.join(iteration_dir, scenario[:filename] + ":#{scenario[:line]}")
   end
 end
