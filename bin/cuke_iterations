@@ -16,7 +16,7 @@ iterations = YAML.load(File.read(opts[:iteration_file]))
 all_scenarios = []
 features = CukeIterations::CukeParser.parse_features(Dir.getwd)
 iterations.each do |iteration_name, iteration|
-  iteration_dir = File.join('profiles', iteration_name, '..', '..')
+  iteration_dir = File.join('iterations', iteration_name, '..', '..')
   FileUtils.mkdir_p iteration_dir
 
   CukeIterations::ScenarioListGenerator.for_profile(features, iteration).each do |scenario|

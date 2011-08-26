@@ -7,7 +7,7 @@ module CukeIterations
         scenario.scenario_outline.feature.file
       else
         raise "Can't deal with #{scenario.class.name}"
-      end[/profiles\/(.+?)\//, 1]
+      end[/iterations\/(.+?)\//, 1]
     end
   end
 end
