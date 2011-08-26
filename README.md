@@ -17,7 +17,7 @@ The only way of 'iterating' over a scenario in Cucumber is to provide it with ex
 
 ## Damn right.  I can just call Cucumber multiple times from a Rake script though!
 
-Absolutely.  It's not without diadvantages though:
+Absolutely.  It's not without disadvantages though:
 
 * Rake will naturally stop after the first failed command, so you have to code around that fact to have Rake ignore the cucumber failures, and fail at the end if any of the Cucumber runs had failures.
 * No aggregation of results - you have to write your own result aggregation code to get an overall view of how all the variations of your tests did.
@@ -25,7 +25,7 @@ Absolutely.  It's not without diadvantages though:
 
 ## So how does this gem work?
 
-It's very simple.  Cucumber can accept a file specifying a list of exact scenarios to run, in the format `filename:line_number`.  This is used to re-run failed scenarios, usually in conjunction with the RerunFormatter.  This gem takes advantage of that, to send Cucumber a long list of all your scenarios, repeated for each profile.
+It's very simple.  Cucumber can accept a file specifying a list of exact scenarios to run, in the format `filename:line_number`.  This is used to re-run failed scenarios, usually in conjunction with the 'rerun' formatter.  This gem takes advantage of that, to send Cucumber a long list of all your scenarios, repeated for each profile.
 
 ## How do I use it?
 
@@ -99,3 +99,5 @@ Depending upon the nature of your profiles, you might like to:
 * Switch the browser driver to a device-specific one
 * Change the URL you're running tests against
 * Change the configuration of the system under test
+
+Happy cuking!
