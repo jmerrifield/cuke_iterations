@@ -11,16 +11,16 @@ opts = Trollop::options do
 end
 
 Trollop::die "Couldn't find iterations file '#{opts[:iteration_file]}'" unless File.exist?(opts[:iteration_file])
-profiles = YAML.load(File.read(opts[:iteration_file]))
+iterations = YAML.load(File.read(opts[:iteration_file]))
 
 all_scenarios = []
 features = CukeIterations::CukeParser.parse_features(Dir.getwd)
-profiles.each do |profile_name, profile|
-  profile_dir = File.join('profiles', profile_name, '..', '..')
-  FileUtils.mkdir_p profile_dir
+iterations.each do |iteration_name, iteration|
+  iteration_dir = File.join('profiles', iteration_name, '..', '..')
+  FileUtils.mkdir_p iteration_dir
 
-  CukeIterations::ScenarioListGenerator.for_profile(features, profile).each do |scenario|
-    all_scenarios << File.join(profile_dir, scenario[:filename] + ":#{scenario[:line]}")
+  CukeIterations::ScenarioListGenerator.for_profile(features, iteration).each do |scenario|
+    all_scenarios << File.join(iteration_dir, scenario[:filename] + ":#{scenario[:line]}")
   end
 end
 
