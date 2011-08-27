@@ -1,4 +1,4 @@
-# Cuke Profiles [![Build Status](https://secure.travis-ci.org/jmerrifield/cuke_iterations.png)](http://travis-ci.org/jmerrifield/cuke_iterations)
+# Cuke Iterations [![Build Status](https://secure.travis-ci.org/jmerrifield/cuke_iterations.png)](http://travis-ci.org/jmerrifield/cuke_iterations)
 
 Multiple invocations of your scenarios, without running Cucumber multiple times.
 
@@ -15,7 +15,7 @@ In order to run different variations of your tests e.g.
 
 The only way of 'iterating' over a scenario in Cucumber is to provide it with example rows.  You certainly don't want a table of 'devices' under every single scenario.
 
-## Damn right.  I can just call Cucumber multiple times from a Rake script though!
+## That would suck!  But I can just call Cucumber multiple times from a Rake script!
 
 Absolutely.  It's not without disadvantages though:
 
@@ -25,15 +25,15 @@ Absolutely.  It's not without disadvantages though:
 
 ## So how does this gem work?
 
-It's very simple.  Cucumber can accept a file specifying a list of exact scenarios to run, in the format `filename:line_number`.  This is used to re-run failed scenarios, usually in conjunction with the 'rerun' formatter.  This gem takes advantage of that, to send Cucumber a long list of all your scenarios, repeated for each profile.
+It's very simple.  Cucumber can accept a file specifying a list of exact scenarios to run, in the format `filename:line_number`.  This is used to re-run failed scenarios, usually in conjunction with the 'rerun' formatter.  This gem takes advantage of that, to send Cucumber a long list of all your scenarios, repeated for each iteration.
 
 ## How do I use it?
 
 First, install the gem: `gem install cuke_iterations`
 
-### Configuration - profiles.yml
+### Configuration - iterations.yml
 
-In your `features` folder, create a YAML file to contain your profiles.  Each one must have a set of included and excluded tags, e.g:
+In your `features` folder, create a YAML file to contain your iterations.  Each one must have a set of included and excluded tags, e.g:
 
 ```yaml
 iphone:
@@ -48,7 +48,7 @@ android:
   - ! '@iphone_only'
 ```
 
-At present, you *must* specify all tags that are to be included.  Excluded tags have priority over included ones (e.g. an `@iphone_only` scenario would not be included in the `android` profile, even if it had the `@mobile` tag.
+At present, you *must* specify all tags that are to be included.  Excluded tags have priority over included ones (e.g. an `@iphone_only` scenario would not be included in the `android` iteration, even if it had the `@mobile` tag.
 
 ### Running it
 
@@ -62,7 +62,7 @@ To see other options:
 
 ### What did it do?
 
-First, it created a set of empty directories under the `profiles` folder - one for each profile that you defined.  You should add this folder to your source-control ignore list (unless you're using Git which doesn't track empty folders).
+First, it created a set of empty directories under the `iterations` folder - one for each iteration that you defined.  You should add this folder to your source-control ignore list (unless you're using Git which doesn't track empty folders).
 
 Next, it created a run file for Cucumber.  If you didn't specify a filename it will be called `run.txt`.  Definitely add this to your source-control ignore list.
 
@@ -72,7 +72,7 @@ Next, it created a run file for Cucumber.  If you didn't specify a filename it w
 
 Note we haven't told Cucumber about our `features` folder like we normally would.  This also means it doesn't know about your `support` or `step_definitions` folders, so make sure to add those to the command-line as well.
 
-### Use the profiles inside your scenarios
+### Use the iterations inside your scenarios
 
 In `env.rb`:
 
@@ -85,16 +85,16 @@ Create a 'Before' hook:
 
 ```ruby
 Before do |scenario|
-  profile = current_profile(scenario)
-  puts "I'm running under the '#{profile}' profile!"
+  iteration = current_iteration(scenario)
+  puts "I'm running under the '#{iteration}' iteration!"
 end
 ```
 
-### What should I do now I know which profile the scenario is running under?
+### What should I do now I know which iteration the scenario is running under?
 
-You should `puts` the profile name to distinguish between instances of the scenario in the Cucumber output.
+You should `puts` the iteration name to distinguish between instances of the scenario in the Cucumber output.
 
-Depending upon the nature of your profiles, you might like to:
+Depending upon the nature of your iterations, you might like to:
 
 * Switch the browser driver to a device-specific one
 * Change the URL you're running tests against
