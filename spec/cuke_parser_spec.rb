@@ -13,10 +13,10 @@ describe "Extracting scenarios" do
       {filename: 'cuking_rocks.feature', line: 10},
       {filename: 'cuking_rocks.feature', line: 21},
       {filename: 'cuking_rocks.feature', line: 22},
-      {filename: 'i_love_cukes.feature', line: 4},
-      {filename: 'i_love_cukes.feature', line: 15},
-      {filename: 'i_love_cukes.feature', line: 16},
-      {filename: 'i_love_cukes.feature', line: 25},
+      {filename: 'subdirectory/i_love_cukes.feature', line: 4},
+      {filename: 'subdirectory/i_love_cukes.feature', line: 15},
+      {filename: 'subdirectory/i_love_cukes.feature', line: 16},
+      {filename: 'subdirectory/i_love_cukes.feature', line: 25},
     ]
 
     parsed_files_with_lines = @parsed_features.map{|x| {filename: x[:filename], line: x[:line]}}
@@ -24,7 +24,7 @@ describe "Extracting scenarios" do
   end
 
   it "should read scenario-level tags" do
-    @parsed_features.should include filename: 'i_love_cukes.feature',
+    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
       line: 4,
       tags: ['@tag1', '@tag2']
   end
@@ -36,7 +36,7 @@ describe "Extracting scenarios" do
   end
 
   it "should read scenario-level tags on example rows" do
-    @parsed_features.should include filename: 'i_love_cukes.feature',
+    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
       line: 15,
       tags: ['@tag3', '@tag4']
   end
@@ -48,7 +48,7 @@ describe "Extracting scenarios" do
   end
 
   it "should read example-group tags on example rows" do
-    @parsed_features.should include filename: 'i_love_cukes.feature',
+    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
       line: 25,
       tags: ['@tag5', '@tag6', '@tag7', '@tag8']
   end
