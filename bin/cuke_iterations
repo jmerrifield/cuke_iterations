@@ -6,17 +6,26 @@ require 'trollop'
 require 'fileutils'
 
 opts = Trollop::options do
+  opt :features_dir, "Features directory", :default => 'features'
   opt :iteration_file, "Iterations file to use", :default => 'cuke_iterations.yml'
   opt :out, "Name of runfile to write", :default => 'run.txt'
 end
 
-Trollop::die "Couldn't find iterations file '#{opts[:iteration_file]}'" unless File.exist?(opts[:iteration_file])
-iterations = YAML.load(File.read(opts[:iteration_file]))
+features_dir = opts[:features_dir]
+iteration_file = opts[:iteration_file]
+
+Trollop::die "Couldn't find features dir '#{features_dir}'" unless Dir.exist?(features_dir)
+
+iteration_file_locations = [iteration_file, File.join(features_dir, iteration_file)]
+location = iteration_file_locations.select { |location| File.exist? location }.first
+
+Trollop::die "Couldn't find iterations file, tried the following: #{iteration_file_locations.join(', ')}" unless location
+iterations = YAML.load(File.read(location))
 
 all_scenarios = []
-features = CukeIterations::CukeParser.parse_features(Dir.getwd)
+features = CukeIterations::CukeParser.parse_features(features_dir)
 iterations.each do |iteration_name, iteration|
-  iteration_dir = File.join('iterations', iteration_name, '..', '..')
+  iteration_dir = File.join(features_dir, 'iterations', iteration_name, '..', '..')
   FileUtils.mkdir_p iteration_dir
 
   CukeIterations::ScenarioListGenerator.for_iteration(features, iteration).each do |scenario|
