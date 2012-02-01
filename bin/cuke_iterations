@@ -20,17 +20,6 @@ iteration_file_locations = [iteration_file, File.join(features_dir, iteration_fi
 location = iteration_file_locations.select { |location| File.exist? location }.first
 
 Trollop::die "Couldn't find iterations file, tried the following: #{iteration_file_locations.join(', ')}" unless location
-iterations = YAML.load(File.read(location))
 
-all_scenarios = []
-features = CukeIterations::CukeParser.parse_features(features_dir)
-iterations.each do |iteration_name, iteration|
-  iteration_dir = File.join(features_dir, 'iterations', iteration_name, '..', '..')
-  FileUtils.mkdir_p iteration_dir
+CukeIterations::ScenarioFileWriter.new.write_scenarios(features_dir, location, opts[:out])
 
-  CukeIterations::ScenarioListGenerator.for_iteration(features, iteration).each do |scenario|
-    all_scenarios << File.join(iteration_dir, scenario[:filename] + ":#{scenario[:line]}")
-  end
-end
-
-File.open(opts[:out], 'w') {|f| f.puts all_scenarios}
