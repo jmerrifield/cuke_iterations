@@ -9,6 +9,18 @@ describe "Scenario list generator" do
     ]
   end
 
+  it "should include all non-excluded scenarios if no include tags are specified" do
+    iteration = {
+        name: "iphone",
+        include_tags: [],
+        exclude_tags: ['@tag8']
+    }
+
+    list = ScenarioListGenerator.for_iteration(@parsed_features, iteration)
+
+    list.should =~ [@test1, @test2]
+  end
+
   it "should include the scenarios that have tags specified in the iteration" do
     iteration = {
         name: "iphone",

@@ -48,11 +48,9 @@ android:
   - ! '@iphone_only'
 ```
 
-At present, you *must* specify all tags that are to be included.  Excluded tags have priority over included ones (e.g. an `@iphone_only` scenario would not be included in the `android` iteration, even if it had the `@mobile` tag.
+If you specify an empty array for `include_tags`, then all scenarios will be included.  Excluded tags have priority over included ones (e.g. an `@iphone_only` scenario would not be included in the `android` iteration, even if it had the `@mobile` tag.
 
 ### Running it
-
-`cd features`
 
 With defaults:
 `cuke_iterations`
@@ -62,7 +60,7 @@ To see other options:
 
 ### What did it do?
 
-First, it created a set of empty directories under the `iterations` folder - one for each iteration that you defined.  You should add this folder to your source-control ignore list (unless you're using Git which doesn't track empty folders).
+First, it created a set of empty directories under the `iterations` folder inside your features folder - one for each iteration that you defined.  You should add this folder to your source-control ignore list (unless you're using Git which doesn't track empty folders).
 
 Next, it created a run file for Cucumber.  If you didn't specify a filename it will be called `run.txt`.  Definitely add this to your source-control ignore list.
 
@@ -70,7 +68,7 @@ Next, it created a run file for Cucumber.  If you didn't specify a filename it w
 
 `cucumber @run.txt`
 
-Note we haven't told Cucumber about our `features` folder like we normally would.  This also means it doesn't know about your `support` or `step_definitions` folders, so make sure to add those to the command-line as well.
+Note we haven't told Cucumber about our `features` folder like we normally would.  If you're not using the conventional Cucumber folder structure, then you will need to explicitly require your `support` and `step_definitions` folders.
 
 ### Use the iterations inside your scenarios
 
