@@ -58,12 +58,19 @@ describe "Extracting scenarios" do
   end
 
   describe "reading scenario information" do
-    before { @scenario_info = @parsed_features.map { |x| x.slice(:filename, :line, :scenario_name) } }
+    before { @scenario_info = @parsed_features.map { |x| x.slice(:filename, :line, :scenario_name, :example_row) } }
 
     it "should read the names of scenarios" do
       @scenario_info.should include filename: 'subdirectory/i_love_cukes.feature',
               line: 4,
               scenario_name: 'Scenario with tags'
+    end
+
+    it "should read the outline name and row details of example rows" do
+      @scenario_info.should include filename: 'cuking_rocks.feature',
+              line: 22,
+              scenario_name: 'My scenario outline',
+              example_row: {'cukes' => '11', 'colour' => 'red'}
     end
   end
 end

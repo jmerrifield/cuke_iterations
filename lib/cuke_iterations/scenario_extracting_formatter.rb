@@ -21,6 +21,7 @@ module CukeIterations
 
     def scenario_outline(outline)
       @outline_tags = outline.tags.map { |t| t.name }
+      @outline_name = outline.name
     end
 
     def examples(examples)
@@ -28,8 +29,10 @@ module CukeIterations
         next if row == examples.rows.first
 
         @discovered_scenarios << {
+            scenario_name: @outline_name,
             line: row.line,
-            tags: @feature_tags + @outline_tags + examples.tags.map { |t| t.name }
+            tags: @feature_tags + @outline_tags + examples.tags.map { |t| t.name },
+            example_row: Hash[*examples.rows.first.cells.zip(row.cells).flatten]
         }
       end
     end
