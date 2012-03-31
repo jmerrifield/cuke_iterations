@@ -23,33 +23,47 @@ describe "Extracting scenarios" do
     parsed_files_with_lines.should =~ expected_features
   end
 
-  it "should read scenario-level tags" do
-    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
-      line: 4,
-      tags: ['@tag1', '@tag2']
+  describe "reading tags" do
+    before { @tag_info = @parsed_features.map { |x| x.slice(:filename, :line, :tags) } }
+
+    it "should read scenario-level tags" do
+      @tag_info.should include filename: 'subdirectory/i_love_cukes.feature',
+        line: 4,
+        tags: ['@tag1', '@tag2']
+    end
+
+    it "should read feature-level tags on scenarios" do
+      @tag_info.should include filename: 'cuking_rocks.feature',
+        line: 10,
+        tags: ['@feature_tag1', '@feature_tag2']
+    end
+
+    it "should read scenario-level tags on example rows" do
+      @tag_info.should include filename: 'subdirectory/i_love_cukes.feature',
+        line: 15,
+        tags: ['@tag3', '@tag4']
+    end
+
+    it "should read feature-level tags on example rows" do
+      @tag_info.should include filename: 'cuking_rocks.feature',
+        line: 21,
+        tags: ['@feature_tag1', '@feature_tag2']
+    end
+
+    it "should read example-group tags on example rows" do
+      @tag_info.should include filename: 'subdirectory/i_love_cukes.feature',
+        line: 25,
+        tags: ['@tag5', '@tag6', '@tag7', '@tag8']
+    end
   end
 
-  it "should read feature-level tags on scenarios" do
-    @parsed_features.should include filename: 'cuking_rocks.feature',
-      line: 10,
-      tags: ['@feature_tag1', '@feature_tag2']
-  end
+  describe "reading scenario information" do
+    before { @scenario_info = @parsed_features.map { |x| x.slice(:filename, :line, :scenario_name) } }
 
-  it "should read scenario-level tags on example rows" do
-    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
-      line: 15,
-      tags: ['@tag3', '@tag4']
-  end
-
-  it "should read feature-level tags on example rows" do
-    @parsed_features.should include filename: 'cuking_rocks.feature',
-      line: 21,
-      tags: ['@feature_tag1', '@feature_tag2']
-  end
-
-  it "should read example-group tags on example rows" do
-    @parsed_features.should include filename: 'subdirectory/i_love_cukes.feature',
-      line: 25,
-      tags: ['@tag5', '@tag6', '@tag7', '@tag8']
+    it "should read the names of scenarios" do
+      @scenario_info.should include filename: 'subdirectory/i_love_cukes.feature',
+              line: 4,
+              scenario_name: 'Scenario with tags'
+    end
   end
 end

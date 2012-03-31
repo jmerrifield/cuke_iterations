@@ -13,6 +13,7 @@ module CukeIterations
 
     def scenario(scenario)
       @discovered_scenarios << {
+          scenario_name: scenario.name,
           line: scenario.line,
           tags: @feature_tags + scenario.tags.map { |t| t.name }
       }
