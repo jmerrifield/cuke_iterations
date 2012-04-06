@@ -5,7 +5,7 @@ describe "Extracting scenarios" do
   before do
     features_dir = File.join(File.dirname(__FILE__), '..', 'example', 'features')
 
-    @parsed_features = CukeParser.parse_features(features_dir)
+    @scenarios = CukeParser.parse_features(features_dir)
   end
 
   it "should find all the scenarios and examples" do
@@ -19,12 +19,12 @@ describe "Extracting scenarios" do
         {filename: 'subdirectory/i_love_cukes.feature', line: 25},
     ]
 
-    parsed_files_with_lines = @parsed_features.map { |x| {filename: x[:filename], line: x[:line]} }
+    parsed_files_with_lines = @scenarios.map { |x| {filename: x[:filename], line: x[:line]} }
     parsed_files_with_lines.should =~ expected_features
   end
 
   describe "reading tags" do
-    before { @tag_info = @parsed_features.map { |x| x.slice(:filename, :line, :tags) } }
+    before { @tag_info = @scenarios.map { |x| x.slice(:filename, :line, :tags) } }
 
     it "should read scenario-level tags" do
       @tag_info.should include filename: 'subdirectory/i_love_cukes.feature',
@@ -58,7 +58,7 @@ describe "Extracting scenarios" do
   end
 
   describe "reading scenario information" do
-    before { @scenario_info = @parsed_features.map { |x| x.slice(:filename, :line, :scenario_name, :example_row) } }
+    before { @scenario_info = @scenarios.map { |x| x.slice(:filename, :line, :scenario_name, :example_row) } }
 
     it "should read the names of scenarios" do
       @scenario_info.should include filename: 'subdirectory/i_love_cukes.feature',

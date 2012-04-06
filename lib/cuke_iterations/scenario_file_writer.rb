@@ -9,7 +9,11 @@ module CukeIterations
         iteration_dir = File.join(features_dir, 'iterations', iteration_name, '..', '..')
         FileUtils.mkdir_p iteration_dir
 
-        ScenarioListGenerator.for_iteration(features, iteration).each do |scenario|
+        criteria = {
+            include: iteration[:include_tags],
+            exclude: iteration[:exclude_tags],
+        }
+        ScenarioFilter.filter_scenarios(features, criteria).each do |scenario|
           all_scenarios << File.join(iteration_dir, scenario[:filename] + ":#{scenario[:line]}")
         end
       end
