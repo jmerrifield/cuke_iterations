@@ -7,15 +7,18 @@ module CukeIterations
       def parse_features(dir)
         scenarios = []
         Dir.glob(File.join(dir, '**/*.feature')).each do |feature_file|
-          formatter = ScenarioExtractingFormatter.new
-          parser = Gherkin::Parser::Parser.new (formatter)
           text = File.open(feature_file, 'r') { |f| f.read }
-          parser.parse(text, __FILE__, __LINE__-1)
-
-          scenarios << formatter.discovered_scenarios.each {|s| s[:filename] = relative_path(feature_file, dir)}
+          scenarios << parse_feature_file_content(text).each { |s| s[:filename] = relative_path(feature_file, dir) }
         end
 
         scenarios.flatten
+      end
+
+      def parse_feature_file_content(text)
+        formatter = ScenarioExtractingFormatter.new
+        parser = Gherkin::Parser::Parser.new (formatter)
+        parser.parse(text, __FILE__, __LINE__-1)
+        formatter.discovered_scenarios
       end
 
       private
