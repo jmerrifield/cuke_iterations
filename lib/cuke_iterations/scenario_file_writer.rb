@@ -1,7 +1,9 @@
+require 'yaml'
+
 module CukeIterations
   class ScenarioFileWriter
     def write_scenarios(features_dir, iteration_file, out_file)
-      iterations = YAML.load(File.read(iteration_file))
+      iterations = ::YAML.load(File.read(iteration_file))
 
       all_scenarios = []
       features = CukeParser.parse_features(features_dir)
