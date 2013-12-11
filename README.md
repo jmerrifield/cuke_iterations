@@ -29,7 +29,16 @@ It's very simple.  Cucumber can accept a file specifying a list of exact scenari
 
 ## How do I use it?
 
-First, install the gem: `gem install cuke_iterations`
+First, install the gem: 
+
+```gem install cuke_iterations```
+
+Or with bundler, add the following to your gemfile:
+
+```gem 'cuke_iterations'```
+
+Note that when using bundler, you will have to run the `cuke_iterations` command as
+`bundle exec cuke_iterations`.
 
 ### Configuration - iterations.yml
 
